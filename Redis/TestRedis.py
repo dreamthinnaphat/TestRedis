@@ -13,9 +13,9 @@ db=redis.StrictRedis(
         password='NBPgck55186',
         decode_responses=True)
 
-#แสดงข้อมูลที่มีทั้งหมดของตาราง
+#Show all Table
 @app.route('/',methods=['GET']) 
-def Show_fruits():     
+def Show_alls():     
     name=db.keys() 
     name.sort()
     req = []     
@@ -23,30 +23,26 @@ def Show_fruits():
         req.append(db.hgetall(i))     
     return jsonify(req)
 
-#แสดงข้อมูล1อย่างในตาราง
+#Show one Table
 @app.route('/<Key>', methods=['GET'])
-def Show_fruit(Key):
+def Show_one(Key):
     name = db.hgetall(Key)  
-    #print (name)
     return jsonify(name)
 
-#ใส่ข้อมูลเพิ่มในตาราง
+#insert
 @app.route('/insert', methods=['POST'])
-def add_fruit():
+def add_user():
     id = request.json['id']
     Name = request.json['Name']
     Nickname = request.json['Nickname']
     Key = request.json['Key']
-    #print (id)
-    #print (name)
-    #print (price)
     user = {"id":id, "Name":Name, "Nickname":Nickname}
     db.hmset(Key,user)
     return 'insert success!'
 
-#อัพเดทข้อมูลในตาราง
+#update
 @app.route('/<Key>', methods=['PUT'])
-def update_fruit(Key):
+def update_user(Key):
     id = request.json['id']
     name = request.json['name']
     price = request.json['price']
