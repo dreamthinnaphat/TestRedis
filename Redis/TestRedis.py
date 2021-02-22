@@ -46,9 +46,6 @@ def update_user(Key):
     id = request.json['id']
     name = request.json['name']
     price = request.json['price']
-    print (id)
-    print (name)
-    print (price)
     user = {"id":id, "name":name, "price":price}
     db.hmset(name,user)
     return 'Update data success!!!'
