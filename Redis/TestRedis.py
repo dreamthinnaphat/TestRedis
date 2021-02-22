@@ -47,7 +47,7 @@ def update_user(Key):
     name = request.json['Name']
     nickname = request.json['Nickname']
     user = {"id":id, "Name":name, "Nickname":nickname}
-    db.hmset(name,user)
+    db.hmset(Key,user)
     return 'Update data success!!!'
 
 #Delete
