@@ -45,14 +45,14 @@ def add_user():
 def update_user(Key):
     id = request.json['id']
     name = request.json['name']
-    price = request.json['price']
-    user = {"id":id, "name":name, "price":price}
+    nickname = request.json['nickname']
+    user = {"id":id, "name":name, "nickname":nickname}
     db.hmset(name,user)
     return 'Update data success!!!'
 
-#ลบข้อมูล
+#Delete
 @app.route('/<Key>', methods=['DELETE'])
-def delete_staff(Key):
+def delete_user(Key):
     db.delete(Key)
     return 'Delete data success!!!'
 
