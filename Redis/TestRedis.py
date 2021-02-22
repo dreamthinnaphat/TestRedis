@@ -44,9 +44,9 @@ def add_user():
 @app.route('/<Key>', methods=['PUT'])
 def update_user(Key):
     id = request.json['id']
-    name = request.json['name']
-    nickname = request.json['nickname']
-    user = {"id":id, "name":name, "nickname":nickname}
+    name = request.json['Name']
+    nickname = request.json['Nickname']
+    user = {"id":id, "Name":name, "Nickname":nickname}
     db.hmset(name,user)
     return 'Update data success!!!'
 
